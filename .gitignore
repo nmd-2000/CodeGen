@@ -1,0 +1,6 @@
+*/__pycache__/*
+*.pyc
+/apex/
+/models/*
+/XLM*/*
+/tree-sitter/*

@@ -176,6 +176,8 @@ def create_symlink(file_path, symlink):
         file_path = Path(file_path)
     if isinstance(symlink, str):
         symlink = Path(symlink)
+    file_path = Path('/media/Z/dungnm31/unsafe_safe_rust/' + file_path.name)
+    symlink = Path('/home/dungnm/CodeGen/XLM-syml/' + symlink.name)
     assert (
         file_path.is_file() or symlink.parent.joinpath(file_path).resolve().is_file()
     ), f"{file_path} is not a file: resolved into {symlink.parent.joinpath(file_path).resolve()}"

@@ -273,8 +273,11 @@ def restore_roberta_segmentation_sentence(line, single_line=False):
 
 
 def restore_fastBPE_segmentation(path):
-    restore_cmd = "sed -i -r 's/(@@ )|(@@ ?$)//g' %s"
-    subprocess.Popen(restore_cmd % path, shell=True).wait()
+    # Unable to run command on mounted disk
+    # restore_cmd = "sudo sed -i -r 's/(@@ )|(@@ ?$)//g' %s"
+    # restore_cmd = "sed -i -r 's/(@@ )|(@@ ?$)//g' %s"
+    # subprocess.Popen(restore_cmd % path, shell=True).wait()
+    pass
 
 
 def parse_lambda_config(params):
