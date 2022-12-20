@@ -26,12 +26,12 @@ TREE_SITTER_ROOT = REPO_ROOT.joinpath("tree-sitter")
 import codegen_sources.preprocessing.lang_processors.cpp_processor
 import codegen_sources.preprocessing.lang_processors.java_processor
 import codegen_sources.preprocessing.lang_processors.python_processor
+import codegen_sources.preprocessing.lang_processors.rust_processor
+import codegen_sources.preprocessing.lang_processors.safe_processor
+import codegen_sources.preprocessing.lang_processors.unsafe_processor
 from codegen_sources.preprocessing.lang_processors.lang_processor import LangProcessor
-
 from codegen_sources.test_generation.test_runners.cpp_test_runner import CppTestRunner
-from codegen_sources.test_generation.test_runners.python_test_runner import (
-    PythonTestRunner,
-)
+
 from codegen_sources.test_generation.evosuite_tests_translators.evosuite_to_python import (
     EvosuiteToPython,
 )
@@ -39,9 +39,9 @@ from codegen_sources.test_generation.evosuite_tests_translators.evosuite_to_cpp 
     EvosuiteToCpp,
 )
 
-EXT = {"python": "py", "java": "java", "cpp": "cpp"}
+EXT = {"python": "py", "java": "java", "cpp": "cpp", "safe": "safe", "unsafe": "unsafe"}
 
-TOFILL = {"python": "#TOFILL", "java": "//TOFILL", "cpp": "//TOFILL"}
+TOFILL = {"python": "#TOFILL", "java": "//TOFILL", "cpp": "//TOFILL", "unsafe": "//TOFILL", "safe": "//TOFILL"}
 
 primitive_types = {"short", "int", "long", "float", "double", "boolean", "char"}
 
@@ -262,6 +262,7 @@ def submit_functions(
     i = id.rstrip()
     for try_id, f_fill in enumerate(functions_list):
         f = f_fill.rstrip()
+        print(f"{lang}/{i}.{EXT[lang]}")
         script_model_path = os.path.join(script_folder, f"{lang}/{i}.{EXT[lang]}")
         if os.path.exists(script_model_path):
             script_model = open(script_model_path, "r", encoding="utf-8").read()

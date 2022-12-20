@@ -27,17 +27,12 @@ from codegen_sources.preprocessing import timeout
 from codegen_sources.preprocessing.bpe_modes.bpe_mode import BPEMode
 from codegen_sources.preprocessing.obfuscation.utils_deobfuscation import SEPARATOR
 from codegen_sources.preprocessing.lang_processors.cpp_processor import CppProcessor
+from codegen_sources.preprocessing.lang_processors.java_processor import JavaProcessor
+from codegen_sources.preprocessing.lang_processors.python_processor import PythonProcessor
 from codegen_sources.preprocessing.lang_processors.safe_processor import SafeProcessor
 from codegen_sources.preprocessing.lang_processors.unsafe_processor import UnsafeProcessor
-from codegen_sources.preprocessing.lang_processors.java_processor import JavaProcessor
-from codegen_sources.preprocessing.lang_processors.python_processor import (
-    PythonProcessor,
-)
-
+from codegen_sources.preprocessing.lang_processors.rust_processor import RustProcessor
 from codegen_sources.preprocessing.lang_processors.lang_processor import LangProcessor
-from codegen_sources.preprocessing.lang_processors.python_processor import (
-    PythonProcessor,
-)
 from codegen_sources.preprocessing.obfuscation.utils_deobfuscation import SEPARATOR
 from codegen_sources.preprocessing.utils import (
     binarize_for_XLM_file,
@@ -560,9 +555,9 @@ class DatasetMode(Generic[T]):
         # shuffle
         self.shuffle_all_tok()
         # split into a train, test and valid sets
-        self.split_train_test_valid(
-            percent_test=percent_test, percent_valid=percent_valid, dedupe=dedupe
-        )
+        # self.split_train_test_valid(
+        #     percent_test=percent_test, percent_valid=percent_valid, dedupe=dedupe
+        # )
         logger.info(
             "Sucessfully regroup, deduplicate and split tokenized data into a train/valid/test sets."
         )

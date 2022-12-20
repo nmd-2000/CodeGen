@@ -1,10 +1,6 @@
-conda create --name codeGen_env python=3.6.9
-conda activate codeGen_env
-conda config --add channels conda-forge
-conda config --add channels pytorch
+conda install pytorch==1.10.1 torchvision==0.11.2 torchaudio==0.10.1 cudatoolkit=11.3 -c pytorch -c conda-forge
+pip install cython six stringcase ply slimit astunparse submitit packaging scikit-learn transformers tqdm regex requests sacremoses
 
-conda install pytorch torchvision torchaudio cudatoolkit=11.0 six scikit-learn stringcase transformers ply slimit astunparse submitit
-pip install cython
 cd codegen_sources/model/tools
 git clone https://github.com/glample/fastBPE.git
 
@@ -26,9 +22,8 @@ cd ../..
 
 git clone https://github.com/NVIDIA/apex
 cd apex
-pip install -v --disable-pip-version-check --no-cache-dir --global-option="--cpp_ext" --global-option="--cuda_ext" ./
+pip install -v --disable-pip-version-check --no-cache-dir ./
 cd ..
 
 pip install sacrebleu=="1.2.11" javalang tree_sitter psutil fastBPE
 pip install hydra-core --upgrade --pre
-pip install black==19.10b0
